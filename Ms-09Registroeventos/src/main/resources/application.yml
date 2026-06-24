@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: registroeventos
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/registroeventos_db
+    username: root
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8089

@@ -1,0 +1,23 @@
+package cl.duoc.msusarios.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+
+@Configuration
+
+
+public class SwaggerConfig {
+
+
+    @Bean
+    public OpenAPI customOpenAPI(){
+        return new OpenAPI().info(new Info().title("MICROSERVICIO DE USUARIOS")
+                                            .version("v1.0")
+                                            .description("DOCUMENTACION DE LA API DE USUARIOS")
+                                                                     );
+    }
+
+}

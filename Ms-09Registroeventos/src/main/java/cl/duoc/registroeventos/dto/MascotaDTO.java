@@ -1,0 +1,17 @@
+package cl.duoc.registroeventos.dto;
+
+import java.util.Date;
+
+public class MascotaDTO {
+    private Integer idMascota;
+    private Integer idTipoMascota;
+    private String nombreMascota;
+    private String especieMascota;
+    private String raza;
+    private Integer edad;
+    private String descripcion;
+    private String disponibilidad;
+    private Date fechaIngreso;
+
+
+}
