@@ -1,6 +1,6 @@
 spring:
   application:
-    name: mensajes
+    name: Ms-08Mensajes
 
   datasource:
     url: jdbc:mysql://localhost:3306/avisos_db
@@ -14,3 +14,15 @@ spring:
 
 server:
   port: 8088
+
+springdoc:
+  api-docs:
+    enabled: true
+    version: openapi_3_0
+  swagger-ui:
+    enabled: true
+
+ eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

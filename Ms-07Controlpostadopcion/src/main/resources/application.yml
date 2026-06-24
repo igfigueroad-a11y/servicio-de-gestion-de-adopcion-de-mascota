@@ -1,6 +1,6 @@
 spring:
   application:
-    name: mscontrolpostadopcion
+    name: Ms-07Controlpostadopcion
 
   datasource:
     url: jdbc:mysql://localhost:3306/visitas_db
@@ -14,3 +14,15 @@ spring:
 
 server:
   port: 8087
+
+springdoc:
+  api-docs:
+    enabled: true
+    version: openapi_3_0
+  swagger-ui:
+    enabled: true
+
+ eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

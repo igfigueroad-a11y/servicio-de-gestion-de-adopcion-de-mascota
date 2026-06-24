@@ -1,11 +1,11 @@
 spring:
   application:
-    name: ms-05postulacion
+    name: Ms-05Postulacion
 
   datasource:
     url: jdbc:mysql://localhost:3306/db_postulaciones
     username: root
-    password: 1234
+    password: 
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -18,3 +18,15 @@ spring:
 
 server:
   port: 8085
+
+  springdoc:
+  api-docs:
+    enabled: true
+    version: openapi_3_0
+  swagger-ui:
+    enabled: true
+
+ eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

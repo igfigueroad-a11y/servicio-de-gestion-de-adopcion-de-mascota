@@ -1,6 +1,6 @@
 spring:
   application:
-    name: msusarios
+    name: Ms-01Usuarios
   datasource:
     url: jdbc:mysql://localhost:3306/db_usuarios
     username: root
@@ -19,3 +19,8 @@ springdoc:
     version: openapi_3_0
   swagger-ui:
     enabled: true
+
+    eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
