@@ -59,7 +59,7 @@ public class ReporteControllerTest {
 
         when(reporteService.listarReportes()).thenReturn(lista);
 
-        mockMvc.perform(get("/reportes"))
+        mockMvc.perform(get("/api/v1/estadisticas"))
                 .andExpect(status().isOk());
     }
 
@@ -67,7 +67,7 @@ public class ReporteControllerTest {
     void listarReportes_retorna204_sinDatos() throws Exception {
         when(reporteService.listarReportes()).thenReturn(Collections.emptyList());
 
-        mockMvc.perform(get("/reportes"))
+        mockMvc.perform(get("/api/v1/estadisticas"))
                 .andExpect(status().isNoContent());
     }
 
@@ -75,7 +75,7 @@ public class ReporteControllerTest {
     void buscarReportePorId_retorna200() throws Exception {
         when(reporteService.buscarReportePorId(1)).thenReturn(reporte);
 
-        mockMvc.perform(get("/reportes/1"))
+        mockMvc.perform(get("/api/v1/estadisticas/1"))
                 .andExpect(status().isOk());
     }
 
@@ -84,7 +84,7 @@ public class ReporteControllerTest {
         when(reporteService.buscarReportePorId(99))
                 .thenThrow(new RuntimeException("Reporte no encontrado"));
 
-        mockMvc.perform(get("/reportes/99"))
+        mockMvc.perform(get("/api/v1/estadisticas/99"))
                 .andExpect(status().isNotFound());
     }
 
@@ -92,7 +92,7 @@ public class ReporteControllerTest {
     void guardarReporte_retorna200() throws Exception {
         when(reporteService.guardarReporte(any(Reporte.class))).thenReturn(reporte);
 
-        mockMvc.perform(post("/reportes")
+        mockMvc.perform(post("/api/v1/estadisticas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
@@ -114,7 +114,7 @@ public class ReporteControllerTest {
     void eliminarReporte_retorna204() throws Exception {
         doNothing().when(reporteService).eliminarReporte(1);
 
-        mockMvc.perform(delete("/reportes/1"))
+        mockMvc.perform(delete("/api/v1/estadisticas/1"))
                 .andExpect(status().isNoContent());
     }
 
@@ -123,7 +123,7 @@ public class ReporteControllerTest {
         doThrow(new RuntimeException("Reporte no encontrado"))
                 .when(reporteService).eliminarReporte(99);
 
-        mockMvc.perform(delete("/reportes/99"))
+        mockMvc.perform(delete("/api/v1/estadisticas/99"))
                 .andExpect(status().isNotFound());
     }
 }

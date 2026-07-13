@@ -12,58 +12,71 @@ spring:
           lower-case-service-id: true
       routes:
         - id: usuarios
-          uri: lb://Ms-01Usuarios
+          uri: "lb://Ms-01Usuarios"
           predicates:
             - Path=/api/v1/usuarios/**
 
         - id: acceso
-          uri: lb://Ms-02Acceso
+          uri: "lb://Ms-02Acceso"
           predicates:
             - Path=/api/v1/acceso/**
 
         - id: mascotas
-          uri: lb://Ms-03Mascotas
+          uri: "lb://Ms-03Mascotas"
           predicates:
             - Path=/api/v1/mascotas/**
 
         - id: tipomascota
-          uri: lb://Ms-04Tipomascota
+          uri: "lb://Ms-04Tipomascota"
           predicates:
             - Path=/api/v1/tipomascota/**
 
         - id: postulacion
-          uri: lb://Ms-05Postulacion
+          uri: "lb://Ms-05Postulacion"
           predicates:
             - Path=/api/v1/postulaciones/**
 
         - id: procesoadopcion
-          uri: lb://Ms-06Procesoadopcion
+          uri: "lb://Ms-06Procesoadopcion"
           predicates:
             - Path=/api/v1/procesoadopcion/**
 
         - id: controlpostadopcion
-          uri: lb://Ms-07Controlpostadopcion
+          uri: "lb://Ms-07Controlpostadopcion"
           predicates:
             - Path=/api/v1/controlpostadopcion/**
 
         - id: mensajes
-          uri: lb://Ms-08Mensajes
+          uri: "lb://Ms-08Mensajes"
           predicates:
             - Path=/api/v1/mensajes/**
 
-        - id: registroeventos
-          uri: lb://Ms-09Registroeventos
+        - id: registroeventos-eventos
+          uri: "lb://Ms-09Registroeventos"
           predicates:
-            - Path=/api/v1/registroeventos/**
+            - Path=/api/v1/eventos/**
+
+        - id: registroeventos-estados
+          uri: "lb://Ms-09Registroeventos"
+          predicates:
+            - Path=/api/v1/estados/**
 
         - id: estadisticas
-          uri: lb://Ms-10Estadisticas
+          uri: "lb://Ms-10Estadisticas"
           predicates:
             - Path=/api/v1/estadisticas/**
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
-       
+      defaultZone: "http://localhost:8761/eureka/"
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway,health,info

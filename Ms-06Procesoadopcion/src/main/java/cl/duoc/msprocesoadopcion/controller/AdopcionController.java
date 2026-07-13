@@ -18,7 +18,7 @@ import cl.duoc.msprocesoadopcion.service.AdopcionService;
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
-@RequestMapping("/api/v1/adopciones")
+@RequestMapping("/api/v1/procesoadopcion")
 @Tag(name = "Adopcion", description = "Operaciones relacionadas con adopciones")
 public class AdopcionController {
 

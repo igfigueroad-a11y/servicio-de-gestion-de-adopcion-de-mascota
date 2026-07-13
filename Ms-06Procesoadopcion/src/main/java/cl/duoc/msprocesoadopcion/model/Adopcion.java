@@ -40,10 +40,6 @@ public class Adopcion {
     @Column(name = "id_mascota", nullable = false)
     private Integer id_mascota;
 
-    @Schema(description = "Identificador de la postulación asociada a la adopción")
-    @Column(name = "idPostulacion", nullable = false)
-    private Integer idPostulacion;
-
     @Schema(description = "Fecha de la adopción")
     @Column(name = "fecha_adopcion", nullable = false)
     private Date fecha_adopcion;

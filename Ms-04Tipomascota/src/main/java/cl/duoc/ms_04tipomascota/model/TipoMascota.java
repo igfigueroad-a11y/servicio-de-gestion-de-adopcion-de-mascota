@@ -23,15 +23,15 @@ public class TipoMascota {
     @Schema(description = "Identificador único del tipo de mascota")
    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IdTipoMascota;
+    private Integer idTipoMascota;
 
     @Schema(description = "Nombre del tipo de mascota")
     @Column(name = "nombre_tipo", nullable = false, unique = true)
-    private String NombreTipo;
+    private String nombreTipo;
 
     @Schema(description = "Descripción del tipo de mascota")
     @Column(name = "descripcion")
-    private String Descripcion;
+    private String descripcion;
 
 }
 

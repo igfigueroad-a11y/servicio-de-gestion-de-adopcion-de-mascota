@@ -10,7 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,47 +20,48 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Schema(description = "Información de la mascota")
 public class Mascota {
 
-@Schema(description = "Identificador único de la mascota")    
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IdMascota;
+    @Schema(description = "Identificador único de la mascota")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_mascota")
+    private Integer idMascota;
 
-@Schema(description = "Nombre de la mascota")
-@Column(name = "nombre", nullable = false)
-    private String NombreMascota;
-@Schema(description = "Identificador del tipo de mascota")
-@Column(name = "id_tipo_mascota", nullable = false)
-        private Integer IdTipoMascota;
-@Schema(description = "Especie de la mascota")
-@Column(name = "especie", nullable = false)
-    private String  EspecieMascota;
+    @Schema(description = "Nombre de la mascota")
+    @Column(name = "nombre", nullable = false)
+    private String nombreMascota;
 
-@Schema(description = "Raza de la mascota")
-@Column(name = "raza", nullable = false)
-    private String Raza;
+    @Schema(description = "Identificador del tipo de mascota")
+    @Column(name = "id_tipo_mascota", nullable = false)
+    private Integer idTipoMascota;
 
-@Schema(description = "Edad de la mascota")
-@Column(name = "edad", nullable = false)
-    private Integer Edad;
+    @Schema(description = "Especie de la mascota")
+    @Column(name = "especie", nullable = false)
+    private String especieMascota;
 
-@Schema(description = "Descripción de la mascota")
-@Column(name = "descripcion", nullable = false)
-    private String Descripcion;
-    
-@Schema(description = "Disponibilidad de la mascota")
-@Column(name = "disponibilidad", nullable = false)
-    private String Disponibilidad;
+    @Schema(description = "Raza de la mascota")
+    @Column(name = "raza", nullable = false)
+    private String raza;
 
-@Schema(description = "Fecha de ingreso de la mascota")
-@Column(name = "fecha_ingreso", nullable = false)
-    private LocalDate FechaIngreso;
+    @Schema(description = "Edad de la mascota")
+    @Column(name = "edad", nullable = false)
+    private Integer edad;
 
-    @Schema(description = "Información de salud de la mascota") 
-@OneToOne(mappedBy = "mascota", cascade = CascadeType.ALL)
-private SaludMascota saludMascota;
-    }
+    @Schema(description = "Descripción de la mascota")
+    @Column(name = "descripcion", nullable = false)
+    private String descripcion;
 
+    @Schema(description = "Disponibilidad de la mascota")
+    @Column(name = "disponibilidad", nullable = false)
+    private String disponibilidad;
+
+    @Schema(description = "Fecha de ingreso de la mascota")
+    @Column(name = "fecha_ingreso", nullable = false)
+    private LocalDate fechaIngreso;
+
+    @Schema(description = "Información de salud de la mascota")
+    @OneToOne(mappedBy = "mascota", cascade = CascadeType.ALL)
+    private SaludMascota saludMascota;
+}

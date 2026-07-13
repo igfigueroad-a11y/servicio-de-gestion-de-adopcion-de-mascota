@@ -57,7 +57,7 @@ public class AvisoControllerTest {
 
         when(avisoService.listarMensajes()).thenReturn(lista);
 
-        mockMvc.perform(get("/api/v1/avisos"))
+        mockMvc.perform(get("/api/v1/mensajes"))
                 .andExpect(status().isOk());
     }
 
@@ -65,7 +65,7 @@ public class AvisoControllerTest {
     void listarAvisos_retorna204_sinDatos() throws Exception {
         when(avisoService.listarMensajes()).thenReturn(Collections.emptyList());
 
-        mockMvc.perform(get("/api/v1/avisos"))
+        mockMvc.perform(get("/api/v1/mensajes"))
                 .andExpect(status().isNoContent());
     }
 
@@ -73,7 +73,7 @@ public class AvisoControllerTest {
     void buscarAvisoPorId_retorna200() throws Exception {
         when(avisoService.buscarAvisoPorId(1)).thenReturn(aviso);
 
-        mockMvc.perform(get("/api/v1/avisos/1"))
+        mockMvc.perform(get("/api/v1/mensajes/1"))
                 .andExpect(status().isOk());
     }
 
@@ -82,7 +82,7 @@ public class AvisoControllerTest {
         when(avisoService.buscarAvisoPorId(99))
                 .thenThrow(new RuntimeException("Aviso no encontrado"));
 
-        mockMvc.perform(get("/api/v1/avisos/99"))
+        mockMvc.perform(get("/api/v1/mensajes/99"))
                 .andExpect(status().isNotFound());
     }
 
@@ -90,7 +90,7 @@ public class AvisoControllerTest {
     void guardarAviso_retorna200() throws Exception {
         when(avisoService.guardarAviso(any(Aviso.class))).thenReturn(aviso);
 
-        mockMvc.perform(post("/api/v1/avisos")
+        mockMvc.perform(post("/api/v1/mensajes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
@@ -109,7 +109,7 @@ public class AvisoControllerTest {
     void eliminarAviso_retorna204() throws Exception {
         doNothing().when(avisoService).eliminarAviso(1);
 
-        mockMvc.perform(delete("/api/v1/avisos/1"))
+        mockMvc.perform(delete("/api/v1/mensajes/1"))
                 .andExpect(status().isNoContent());
     }
 
@@ -118,7 +118,7 @@ public class AvisoControllerTest {
         doThrow(new RuntimeException("Aviso no encontrado"))
                 .when(avisoService).eliminarAviso(99);
 
-        mockMvc.perform(delete("/api/v1/avisos/99"))
+        mockMvc.perform(delete("/api/v1/mensajes/99"))
                 .andExpect(status().isNotFound());
     }
 }

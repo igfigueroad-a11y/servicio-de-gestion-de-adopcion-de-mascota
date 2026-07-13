@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/api/v1/visitas")
+@RequestMapping("/api/v1/controlpostadopcion")
 @Tag(name = "Visita", description = "Controlador para gestionar las visitas de control post adopción")
 public class VisitaController {
 

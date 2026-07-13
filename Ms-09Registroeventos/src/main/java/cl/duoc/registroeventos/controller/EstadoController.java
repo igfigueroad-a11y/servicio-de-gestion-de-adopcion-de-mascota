@@ -16,7 +16,7 @@ import cl.duoc.registroeventos.model.Estado;
 import cl.duoc.registroeventos.service.EstadoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.websocket.OnClose;
+
 
 
 @RestController

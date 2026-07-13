@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 
 @RestController
-@RequestMapping("/api/v1/avisos")
+@RequestMapping("/api/v1/mensajes")
 @Tag(name = "Aviso Controller", description = "Controlador para gestionar avisos")
 public class AvisoController {
 

@@ -42,9 +42,5 @@ private String contraseña;
    @Column(name = "cuenta_activa", nullable = false)
 private Boolean cuentaActiva;
 
-   public void setIdAcceso(int i) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setIdAcceso'");
-   }
 
 }

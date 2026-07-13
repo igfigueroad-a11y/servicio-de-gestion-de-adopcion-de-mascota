@@ -1,7 +1,5 @@
 package cl.duoc.mscontrolpostadopcion.controller;
 
-
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
@@ -17,7 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -53,7 +50,7 @@ public class VisitaControllerTest {
 
         when(visitaService.listarVisitas()).thenReturn(lista);
 
-        llamadaFalsa.perform(get("/api/v1/visitas"))
+        llamadaFalsa.perform(get("/api/v1/controlpostadopcion"))
                 .andExpect(status().isOk());
     }
 
@@ -61,7 +58,7 @@ public class VisitaControllerTest {
     void listarVisitas_retorna204_sinDatos() throws Exception {
         when(visitaService.listarVisitas()).thenReturn(Collections.emptyList());
 
-        llamadaFalsa.perform(get("/api/v1/visitas"))
+        llamadaFalsa.perform(get("/api/v1/controlpostadopcion"))
                 .andExpect(status().isNoContent());
     }
 
@@ -69,7 +66,7 @@ public class VisitaControllerTest {
     void buscarVisitaPorId_retorna200() throws Exception {
         when(visitaService.buscarVisitaPorId(1)).thenReturn(visita);
 
-        llamadaFalsa.perform(get("/api/v1/visitas/1"))
+        llamadaFalsa.perform(get("/api/v1/controlpostadopcion/1"))
                 .andExpect(status().isOk());
     }
 
@@ -78,7 +75,7 @@ public class VisitaControllerTest {
         when(visitaService.buscarVisitaPorId(99))
                 .thenThrow(new RuntimeException("Visita no encontrada"));
 
-        llamadaFalsa.perform(get("/api/v1/visitas/99"))
+        llamadaFalsa.perform(get("/api/v1/controlpostadopcion/99"))
                 .andExpect(status().isNotFound());
     }
 
@@ -86,12 +83,13 @@ public class VisitaControllerTest {
     void guardarVisita_retorna200() throws Exception {
         when(visitaService.guardarVisita(any(Visita.class))).thenReturn(visita);
 
-        llamadaFalsa.perform(post("/api/v1/visitas")
+        llamadaFalsa.perform(post("/api/v1/controlpostadopcion")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                          "idAdopcion": 10,
-                          "comentario": "Visita en buen estado"
+                          "id_visita": 1,
+                          "id_adopcion": 10,
+                          "descripcion_visita": "Visita en buen estado"
                         }
                         """))
                 .andExpect(status().isOk());
@@ -101,7 +99,7 @@ public class VisitaControllerTest {
     void eliminarVisita_retorna204() throws Exception {
         doNothing().when(visitaService).eliminarVisita(1);
 
-        llamadaFalsa.perform(delete("/api/v1/visitas/1"))
+        llamadaFalsa.perform(delete("/api/v1/controlpostadopcion/1"))
                 .andExpect(status().isNoContent());
     }
 
@@ -110,7 +108,7 @@ public class VisitaControllerTest {
         doThrow(new RuntimeException("Visita no encontrada"))
                 .when(visitaService).eliminarVisita(99);
 
-        llamadaFalsa.perform(delete("/api/v1/visitas/99"))
+        llamadaFalsa.perform(delete("/api/v1/controlpostadopcion/99"))
                 .andExpect(status().isNotFound());
     }
 }

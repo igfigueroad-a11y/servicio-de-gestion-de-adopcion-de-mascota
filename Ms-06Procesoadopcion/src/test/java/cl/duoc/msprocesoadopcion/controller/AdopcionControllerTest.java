@@ -53,7 +53,7 @@ public class AdopcionControllerTest {
 
         when(adopcionService.listarAdopciones()).thenReturn(lista);
 
-        llamadaFalsa.perform(get("/api/v1/adopciones"))
+        llamadaFalsa.perform(get("/api/v1/procesoadopcion"))
                 .andExpect(status().isOk());
     }
 
@@ -61,7 +61,7 @@ public class AdopcionControllerTest {
     void listarAdopciones_retorna204_sinDatos() throws Exception {
         when(adopcionService.listarAdopciones()).thenReturn(Collections.emptyList());
 
-        llamadaFalsa.perform(get("/api/v1/adopciones"))
+        llamadaFalsa.perform(get("/api/v1/procesoadopcion"))
                 .andExpect(status().isNoContent());
     }
 
@@ -69,7 +69,7 @@ public class AdopcionControllerTest {
     void buscarPorId_retorna200() throws Exception {
         when(adopcionService.buscarAdopcionPorId(1)).thenReturn(adopcion);
 
-        llamadaFalsa.perform(get("/api/v1/adopciones/1"))
+        llamadaFalsa.perform(get("/api/v1/procesoadopcion/1"))
                 .andExpect(status().isOk());
     }
 
@@ -78,7 +78,7 @@ public class AdopcionControllerTest {
         when(adopcionService.buscarAdopcionPorId(99))
                 .thenThrow(new RuntimeException("Adopcion no encontrada"));
 
-        llamadaFalsa.perform(get("/api/v1/adopciones/99"))
+        llamadaFalsa.perform(get("/api/v1/procesoadopcion/99"))
                 .andExpect(status().isNotFound());
     }
 
@@ -86,7 +86,7 @@ public class AdopcionControllerTest {
 void guardarAdopcion_retorna200() throws Exception {
     when(adopcionService.guardarAdopcion(any(Adopcion.class))).thenReturn(adopcion);
 
-    llamadaFalsa.perform(post("/api/v1/adopciones")
+    llamadaFalsa.perform(post("/api/v1/procesoadopcion")
             .contentType(MediaType.APPLICATION_JSON)
             .content("""
                     {
@@ -101,7 +101,7 @@ void guardarAdopcion_retorna200() throws Exception {
     void eliminarAdopcion_retorna204() throws Exception {
         doNothing().when(adopcionService).eliminarAdopcion(1);
 
-        llamadaFalsa.perform(delete("/api/v1/adopciones/1"))
+        llamadaFalsa.perform(delete("/api/v1/procesoadopcion/1"))
                 .andExpect(status().isNoContent());
     }
 
@@ -110,7 +110,7 @@ void guardarAdopcion_retorna200() throws Exception {
         doThrow(new RuntimeException("Adopcion no encontrada"))
                 .when(adopcionService).eliminarAdopcion(99);
 
-        llamadaFalsa.perform(delete("/api/v1/adopciones/99"))
+        llamadaFalsa.perform(delete("/api/v1/procesoadopcion/99"))
                 .andExpect(status().isNotFound());
     }
 }
